@@ -1,8 +1,9 @@
-package com.mcb.creditfactory.service.car;
+package com.mcb.creditfactory.service.collaterals.car;
 
 import com.mcb.creditfactory.dto.CarDto;
 import com.mcb.creditfactory.external.ExternalApproveService;
 import com.mcb.creditfactory.model.Car;
+import com.mcb.creditfactory.model.Collaterals;
 import com.mcb.creditfactory.repository.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,7 +14,6 @@ import java.util.Optional;
 public class CarServiceImpl implements CarService {
     @Autowired
     private ExternalApproveService approveService;
-
     @Autowired
     private CarRepository carRepository;
 
@@ -39,9 +39,8 @@ public class CarServiceImpl implements CarService {
                 dto.getBrand(),
                 dto.getModel(),
                 dto.getPower(),
-                dto.getYear(),
-                dto.getValue()
-        );
+                dto.getCollaterals()  == null ? new Collaterals() : dto.getCollaterals(),
+                dto.getYear());
     }
 
     @Override
@@ -52,8 +51,7 @@ public class CarServiceImpl implements CarService {
                 car.getModel(),
                 car.getPower(),
                 car.getYear(),
-                car.getValue()
-        );
+                car.getCollaterals());
     }
 
     @Override

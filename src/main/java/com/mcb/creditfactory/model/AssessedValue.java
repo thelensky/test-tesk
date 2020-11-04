@@ -5,25 +5,25 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "CAR")
-public class Car {
+@Table(name = "ASSESSED_VALUE")
+public class AssessedValue {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String brand;
-    private String model;
-    private Double power;
 
-    @OneToOne
-    @MapsId
-    @JoinColumn(name = "id")
+    @ManyToOne
     private Collaterals collaterals;
 
-    @Column(name = "year_of_issue")
-    private Short year;
+    @Column(name = "assessed_value")
+    private BigDecimal value;
+
+    @Column(name = "change_date")
+    LocalDate date;
 }

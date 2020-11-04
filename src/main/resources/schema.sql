@@ -4,7 +4,7 @@ create table CAR (
   model VARCHAR2(200),
   power DOUBLE,
   year_of_issue YEAR,
-  assessed_value DEC(20)
+  collaterals_fk INT
 );
 
 create table AIRPLANE (
@@ -13,6 +13,25 @@ create table AIRPLANE (
   model VARCHAR2(200),
   manufacturer VARCHAR2(500),
   year_of_issue YEAR,
-  fuelCapacity INT,
-  seats INT
+  fuel_capacity INT,
+  seats INT,
+  collaterals_fk INT
 );
+
+create table COLLATERALS (
+  id IDENTITY primary key
+);
+
+create table ASSESSED_VALUE (
+  id IDENTITY primary key,
+  collaterals_fk INT,
+  assessed_value DEC(20),
+  change_date DATE
+);
+
+alter table CAR add constraint fk_collaterals_car foreign key (collaterals_fk) references COLLATERALS(id);
+
+alter table AIRPLANE add constraint fk_collaterals_airplane foreign key (collaterals_fk) references COLLATERALS(id);
+
+alter table ASSESSED_VALUE add constraint fk_assessed_value foreign key (collaterals_fk) references COLLATERALS(id);
+

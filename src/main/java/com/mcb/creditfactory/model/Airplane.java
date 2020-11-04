@@ -10,20 +10,24 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "CAR")
-public class Car {
+@Table(name = "AIRPLANE")
+public class Airplane {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String brand;
     private String model;
-    private Double power;
+    private String manufacturer;
+    private Integer seats;
+
+    @Column(name = "year_of_issue")
+    private Short year;
+
+    @Column(name = "fuel_capacity")
+    private Double fuelCapacity;
 
     @OneToOne
     @MapsId
     @JoinColumn(name = "id")
     private Collaterals collaterals;
-
-    @Column(name = "year_of_issue")
-    private Short year;
 }

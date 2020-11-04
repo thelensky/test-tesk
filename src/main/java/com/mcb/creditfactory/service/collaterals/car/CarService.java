@@ -1,4 +1,4 @@
-package com.mcb.creditfactory.service.car;
+package com.mcb.creditfactory.service.collaterals.car;
 
 import com.mcb.creditfactory.dto.CarDto;
 import com.mcb.creditfactory.model.Car;
